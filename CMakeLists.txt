@@ -13,19 +13,22 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 # The following folder will be included
 include_directories("${PROJECT_SOURCE_DIR}")
 
+# Sources
+file(GLOB SOURCES "src/*.cpp")
+
 # Executable
-add_executable(3dpp main.cpp)
+add_executable(3dpp main.cpp ${SOURCES})
 
 # Libs
 # On Mac:
 #   brew install glew
-#   brew install sdl
+#   brew install sdl2
 #   brew install glm
 
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
-find_package(SDL REQUIRED)
+find_package(SDL2 REQUIRED)
 
-include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} ${SDL_INCLUDE_DIRS})
+include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} ${SDL2_INCLUDE_DIRS})
 
-target_link_libraries(3dpp ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${SDL_LIBRARY})
+target_link_libraries(3dpp ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${SDL2_LIBRARY})

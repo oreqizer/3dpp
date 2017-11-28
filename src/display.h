@@ -14,4 +14,4 @@ class Display {
 	    Display(const Display& display) {}
 };
 
-#endif
+#endif // DISPLAY_H

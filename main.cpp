@@ -1,7 +1,5 @@
-#include <iostream>
 #include <GL/glew.h>
-
-using namespace std;
+#include "src/display.h"
 
 // Make configs:
 //   brew install cmake
@@ -9,6 +7,6 @@ using namespace std;
 // Compile
 //   cmake --build build -- -j3
 int main() {
-    cout << "Yolo" << endl;
+    Display display(800, 600, "Yolo");
     return 0;
 }

@@ -1,9 +1,10 @@
 #include "display.h"
+#include <iostream>
 
 Display::Display(int width, int height, const std::string& title) {
-	// ctor
+	std::cout << "Alive" << std::endl;
 }
 
 Display::~Display() {
-	// dtor
+	std::cout << "Dead" << std::endl;
 }
