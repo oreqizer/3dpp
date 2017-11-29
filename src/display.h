@@ -7,6 +7,7 @@
 class Display {
     public:
         Display(int width, int height, const std::string& title);
+        void swapBuffers();
 
         virtual ~Display();
     protected:
@@ -14,7 +15,8 @@ class Display {
         void operator=(const Display& display) {}
         Display(const Display& display) {}
         
-        SDL_Window* window_m;
+        SDL_Window* m_window;
+        SDL_GLContext m_glContext;
 };
 
 #endif // DISPLAY_H
