@@ -30,5 +30,4 @@ find_package(GLEW REQUIRED)
 find_package(SDL2 REQUIRED)
 
 include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} ${SDL2_INCLUDE_DIRS})
-
-target_link_libraries(3dpp ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${SDL2_LIBRARY})
+target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES} ${SDL2_LIBRARIES})
