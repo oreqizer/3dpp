@@ -1,5 +1,5 @@
 # Specify the minimum version for CMake
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.9.4)
 
 # Project's name
 project(3dpp)
@@ -16,7 +16,10 @@ include_directories("${PROJECT_SOURCE_DIR}")
 file(GLOB SOURCES "src/*.cpp")
 
 # Executable
-add_executable(3dpp main.cpp ${SOURCES})
+add_executable(${PROJECT_NAME} main.cpp ${SOURCES})
+
+# C++ compiler features
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 
 # Libs
 # On Mac:
