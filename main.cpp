@@ -7,7 +7,7 @@
 //   brew install cmake
 //   cmake -H. -Bbuild
 // Compile
-//   cmake --build build -- -j3
+//   cmake --build build
 int main() {
     Display display(800, 600, "Yolo");
 
