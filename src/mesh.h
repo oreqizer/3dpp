@@ -1,14 +1,20 @@
 #ifndef MESH_H
 #define MESH_H
 
-class Mesh {
-    public:
-        Mesh();
-        virtual ~Mesh();
+class Vertex {
+public:
+protected:
+private:
+}
 
-        void Draw();
-    protected:
-    private:
+class Mesh {
+public:
+    Mesh();
+    virtual ~Mesh();
+
+    void Draw();
+protected:
+private:
 };
 
 #endif // MESH_H

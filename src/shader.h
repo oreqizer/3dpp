@@ -9,19 +9,19 @@ static void CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const s
 static GLuint CreateShader(const std::string& text, GLenum type);
 
 class Shader {
-    public:
-        Shader(const std::string& filename);
-        virtual ~Shader();
+public:
+    Shader(const std::string& filename);
+    virtual ~Shader();
 
-        void Bind();
-    protected:
-    private:
-        static const unsigned int NUM_SHADERS = 2;
-        void operator=(const Shader& Shader) {}
-        Shader(const Shader& Shader) {}
+    void Bind();
+protected:
+private:
+    static const unsigned int NUM_SHADERS = 2;
+    void operator=(const Shader& Shader) {}
+    Shader(const Shader& Shader) {}
 
-        GLuint m_program;
-        GLuint m_shaders[NUM_SHADERS];
+    GLuint m_program;
+    GLuint m_shaders[NUM_SHADERS];
 };
 
 #endif // SHADER_H
