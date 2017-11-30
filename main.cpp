@@ -3,6 +3,7 @@
 #include "src/display.h"
 #include "src/mesh.h"
 #include "src/shader.h"
+#include "src/texture.h"
 
 // Make configs:
 //   brew install cmake
@@ -19,13 +20,17 @@ int main() {
 
     Display display(800, 600, "Yolo");
 
-    Shader shader("res/shaderBasic");
     Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]));
+    Shader shader("res/shaderBasic");
+    Texture texture("res/illuminati.jpg");
 
     while (!display.IsClosed()) {
         display.Clear(1.0f, 0.0f, 0.0f, 1.0f);
+
         mesh.Draw();
+        texture.Bind(0);
         shader.Bind();
+
         display.Update();
     }
 
