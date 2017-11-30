@@ -28,6 +28,8 @@ Display::Display(int width, int height, const std::string& title) {
 	// instead of the OS itself
 	m_glContext = SDL_GL_CreateContext(m_window);
 
+	// A YouTube comment told me to do this ¯\_(ツ)_/¯
+	glewExperimental = GL_TRUE;
 	// Searches the OS and gathers all possible OpenGL fns
 	GLenum status = glewInit();
 
