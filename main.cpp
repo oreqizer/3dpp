@@ -13,14 +13,14 @@
 int main() {
     // A mock mesh data, a triangle
     Vertex vertices[] = {
-        Vertex(glm::vec3(-0.5, -0.5, 0)),
-        Vertex(glm::vec3(0, 0.5, 0)),
-        Vertex(glm::vec3(0.5, -0.5, 0)),
+        Vertex(glm::vec3(-0.5, -0.5, 0.0), glm::vec2(0.0, 0.0)),
+        Vertex(glm::vec3(0.0, 0.5, 0.0), glm::vec2(0.5, 1.0)),
+        Vertex(glm::vec3(0.5, -0.5, 0.0), glm::vec2(1.0, 0.0)),
     };
 
     Display display(800, 600, "Yolo");
 
-    Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]));
+    Mesh mesh(vertices);
     Shader shader("res/shaderBasic");
     Texture texture("res/illuminati.jpg");
 

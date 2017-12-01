@@ -1,4 +1,4 @@
-#include <assert.h>
+#include <cassert>
 #include <iostream>
 
 #define STB_IMAGE_IMPLEMENTATION
