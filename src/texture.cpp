@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <iostream>
 
-#define STB_TEXTEDIT_IMPLEMENTATION
+#define STB_IMAGE_IMPLEMENTATION
 #include "../lib/stb_image.h"
 #include "texture.h"
 
