@@ -1,9 +1,11 @@
 #include <GL/glew.h>
+#include <unistd.h>
 
 #include "src/display.h"
 #include "src/mesh.h"
 #include "src/shader.h"
 #include "src/texture.h"
+#include "src/transform.h"
 
 // Make configs:
 //   brew install cmake
@@ -23,15 +25,30 @@ int main() {
     Mesh mesh(vertices);
     Shader shader("res/shader.vert", "res/shader.frag");
     Texture texture("res/illuminati.png");
+    Transform transform;
+
+    float counter = 0.0f;
+
+    // I don't know why I need 2 of them.
+    // Silly 'nanosleep'
+    struct timespec tim, tim2;
+    tim.tv_sec = 0;
+    tim.tv_nsec = 16000000L; // 16ms
 
     while (!display.IsClosed()) {
-        display.Clear(0.0f, 0.25f, 0.5f, 1.0f);
+        display.Clear(0.0f, 0.15f, 0.3f, 1.0f);
+
+        glm::vec3 pos = glm::vec3(sinf(counter), 0.0f, 0.0f);
+        transform.SetPos(pos);
 
         mesh.Draw();
         texture.Bind(0);
+        shader.Update(transform);
         shader.Bind();
 
         display.Update();
+        counter += 0.1f;
+        nanosleep(&tim, &tim2);
     }
 
     return 0;
