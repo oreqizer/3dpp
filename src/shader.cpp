@@ -4,12 +4,12 @@
 
 #include "shader.h"
 
-Shader::Shader(const std::string& filename) {
+Shader::Shader(const std::string& filevert, const std::string& filefrag) {
     m_program = glCreateProgram();
 
     // Extensions are custom just to distinguish stuff
-    m_shaders[0] = CreateShader(LoadShader(filename + ".glvs"), GL_VERTEX_SHADER);
-    m_shaders[1] = CreateShader(LoadShader(filename + ".glfs"), GL_FRAGMENT_SHADER);
+    m_shaders[0] = CreateShader(LoadShader(filevert), GL_VERTEX_SHADER);
+    m_shaders[1] = CreateShader(LoadShader(filefrag), GL_FRAGMENT_SHADER);
 
     for (GLuint shader : m_shaders) {
         glAttachShader(m_program, shader);

@@ -10,15 +10,13 @@ static GLuint CreateShader(const std::string& text, GLenum type);
 
 class Shader {
 public:
-    Shader(const std::string& filename);
+    Shader(const std::string& filevert, const std::string& filefrag);
     virtual ~Shader();
 
     void Bind();
 protected:
 private:
     static const unsigned int NUM_SHADERS = 2;
-    void operator=(const Shader& Shader) {}
-    Shader(const Shader& Shader) {}
 
     GLuint m_program;
     GLuint m_shaders[NUM_SHADERS];
