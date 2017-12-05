@@ -1,11 +1,15 @@
 #include <GL/glew.h>
 #include <unistd.h>
 
+#include "src/camera.h"
 #include "src/display.h"
 #include "src/mesh.h"
 #include "src/shader.h"
 #include "src/texture.h"
 #include "src/transform.h"
+
+#define WIDTH 800
+#define HEIGHT 600
 
 // Make configs:
 //   brew install cmake
@@ -20,8 +24,9 @@ int main() {
         Vertex(glm::vec3(0.5, -0.5, 0.0), glm::vec2(0.0, 1.0)),
     };
 
-    Display display(800, 600, "Yolo");
+    Display display(WIDTH, HEIGHT, "Yolo");
 
+    Camera camera(glm::vec3(0, 0, -3), 70.0f, WIDTH/HEIGHT, 0.01f, 1000.0f);
     Mesh mesh(vertices);
     Shader shader("res/shader.vert", "res/shader.frag");
     Texture texture("res/illuminati.png");
@@ -39,16 +44,16 @@ int main() {
         display.Clear(0.0f, 0.15f, 0.3f, 1.0f);
 
         transform.SetPos(glm::vec3(sinf(counter), 0.0f, 0.0f));
-        transform.SetRot(glm::vec3(0.0f, 0.0f, counter));
-        transform.SetScale(glm::vec3(cosf(counter), cosf(counter), cosf(counter)));
+        transform.SetRot(glm::vec3(sinf(counter), cosf(counter), counter));
+        // transform.SetScale(glm::vec3(cosf(counter), cosf(counter), cosf(counter)));
 
         mesh.Draw();
         texture.Bind(0);
-        shader.Update(transform);
+        shader.Update(transform, camera);
         shader.Bind();
 
         display.Update();
-        counter += 0.1f;
+        counter += 0.02f;
         nanosleep(&tim, &tim2);
     }
 

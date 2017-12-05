@@ -4,6 +4,7 @@
 #include <string>
 #include <GL/glew.h>
 
+#include "camera.h"
 #include "transform.h"
 
 static std::string LoadShader(const std::string& filename);
@@ -16,7 +17,7 @@ public:
     virtual ~Shader();
 
     void Bind();
-    void Update(const Transform& transform);
+    void Update(const Transform& transform, const Camera& camera);
 protected:
 private:
     static const unsigned int NUM_SHADERS = 2;
