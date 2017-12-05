@@ -38,8 +38,9 @@ int main() {
     while (!display.IsClosed()) {
         display.Clear(0.0f, 0.15f, 0.3f, 1.0f);
 
-        glm::vec3 pos = glm::vec3(sinf(counter), 0.0f, 0.0f);
-        transform.SetPos(pos);
+        transform.SetPos(glm::vec3(sinf(counter), 0.0f, 0.0f));
+        transform.SetRot(glm::vec3(0.0f, 0.0f, counter));
+        transform.SetScale(glm::vec3(cosf(counter), cosf(counter), cosf(counter)));
 
         mesh.Draw();
         texture.Bind(0);
