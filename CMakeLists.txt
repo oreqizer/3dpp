@@ -13,7 +13,7 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 include_directories("${PROJECT_SOURCE_DIR}")
 
 # Sources
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "src/*.cpp" "lib/*.cpp")
 
 # Executable
 add_executable(${PROJECT_NAME} main.cpp ${SOURCES})

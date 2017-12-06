@@ -24,10 +24,13 @@ int main() {
         Vertex(glm::vec3(0.5, -0.5, 0.0), glm::vec2(0.0, 1.0)),
     };
 
+    unsigned int indices[] = {0, 1, 2};
+
     Display display(WIDTH, HEIGHT, "Yolo");
 
-    Camera camera(glm::vec3(0, 0, -3), 70.0f, WIDTH/HEIGHT, 0.01f, 1000.0f);
-    Mesh mesh(vertices);
+    Camera camera(glm::vec3(0, 0, -5), 70.0f, WIDTH/HEIGHT, 0.01f, 1000.0f);
+    // Mesh mesh(vertices, indices);
+    Mesh mesh("res/monkey.obj");
     Shader shader("res/shader.vert", "res/shader.frag");
     Texture texture("res/illuminati.png");
     Transform transform;
