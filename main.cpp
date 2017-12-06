@@ -32,7 +32,7 @@ int main() {
     // Mesh mesh(vertices, indices);
     Mesh mesh("res/monkey.obj");
     Shader shader("res/shader.vert", "res/shader.frag");
-    Texture texture("res/illuminati.png");
+    Texture texture("res/bricks.jpg");
     Transform transform;
 
     float counter = 0.0f;

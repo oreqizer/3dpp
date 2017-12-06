@@ -9,17 +9,20 @@
 
 class Vertex {
 public:
-    Vertex(const glm::vec3& pos, const glm::vec2& tex) {
+    Vertex(const glm::vec3& pos, const glm::vec2& tex, const glm::vec3& normal = glm::vec3(0, 0, 0)) {
         this->pos = pos;
         this->tex = tex;
+        this->normal = normal;
     };
 
     inline glm::vec3* GetPos() { return &pos; }
     inline glm::vec2* GetTex() { return &tex; }
+    inline glm::vec3* GetNormal() { return &normal; }
 protected:
 private:
     glm::vec3 pos;
     glm::vec2 tex;
+    glm::vec3 normal;
 };
 
 class Mesh {
@@ -35,6 +38,7 @@ private:
     enum {
         POSITION_VB,
         TEXCOORD_VB,
+        NORMAL_VB,
         INDEX_VB,
 
         // How many items are in the enum
@@ -57,6 +61,7 @@ Mesh::Mesh(Vertex (&vertices)[N], unsigned int (&indices)[M]) {
     for (Vertex& vertex : vertices) {
         model.positions.push_back(*vertex.GetPos());
         model.texCoords.push_back(*vertex.GetTex());
+        model.normals.push_back(*vertex.GetNormal());
     }
 
     for (unsigned int& indice : indices) {
@@ -113,14 +118,18 @@ void Mesh::InitMesh(const IndexedModel& model) {
 
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0); // Attribute 1: texcoord
+    
+    // NORMAL_VB buffer
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vertexArrayBuffers[NORMAL_VB]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, model.normals.size() * sizeof(model.normals[0]), &model.normals[0], GL_STATIC_DRAW);
+
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, 0); // Attribute 2: normal
 
     // INDEX_VB buffer
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vertexArrayBuffers[INDEX_VB]);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, model.indices.size() * sizeof(model.indices[0]), &model.indices[0], GL_STATIC_DRAW);
 
-    // glEnableVertexAttribArray(1);
-    // glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0); // Attribute 2: texcoord
-    
     // No more work
     glBindVertexArray(0);
 }
