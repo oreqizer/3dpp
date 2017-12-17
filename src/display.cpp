@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 #include <GL/glew.h>
 
 #include "display.h"
@@ -36,7 +37,8 @@ Display::Display(int width, int height, const std::string& title) {
 	GLenum status = glewInit();
 
 	if (status != GLEW_OK) {
-		std::cout << "Glew failed to initialize" << std::endl;
+		std::cout << "Glew failed to initialize - " << glewGetErrorString(status) << std::endl;
+		exit(EXIT_FAILURE);
 	}
 
 	m_isClosed = false;
